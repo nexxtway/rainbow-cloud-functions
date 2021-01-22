@@ -1,0 +1,6 @@
+{
+    "out": "docs",
+    "entryPoints": [
+        "./packages/callables/src/index.ts"
+    ]
+}
