@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "npx lerna bootstrap",
     "build": "lerna run build",
     "lint": "eslint ./packages --ext .js,.ts",
     "test": "JEST_JUNIT_OUTPUT_DIR=coverage jest",
