@@ -25,7 +25,7 @@ jobs:
         steps:
             - checkout
             - *restore_cache
-            - run: yarn install --frozen-lockfile
+            - run: yarn bootstrap
             - *save_cache
             - run: yarn lint
             - run: yarn test --runInBand --ci --coverage --reporters=default --reporters=jest-junit
