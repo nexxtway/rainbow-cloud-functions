@@ -21,7 +21,6 @@ references:
 jobs:
     build_and_test:
         <<: *environment
-
         steps:
             - checkout
             - *restore_cache
@@ -40,12 +39,22 @@ jobs:
 
     deploy_docs_firebase:
         <<: *environment
-
         steps:
             - checkout
             - *restore_cache
             - run: yarn bootstrap
             - run: yarn deploy:docs --token=$FIREBASE_TOKEN
+
+    publish_canary:
+        <<: *environment
+        steps:
+            - checkout
+            - *restore_cache
+            - run: yarn bootstrap
+            - run:
+                  name: Auth with registry
+                  command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+            - run: yarn publish-packages --canary --preid canary --yes
 
 workflows:
     version: 2
@@ -58,3 +67,9 @@ workflows:
                 filters:
                     branches:
                         only: master
+            - publish_canary:
+                  requires:
+                      - build_and_test
+                  filters:
+                      branches:
+                          only: master
