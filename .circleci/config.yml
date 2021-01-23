@@ -28,7 +28,9 @@ jobs:
             - run: yarn bootstrap
             - *save_cache
             - run: yarn lint
-            - run: yarn test --runInBand --ci --coverage --reporters=default --reporters=jest-junit
+            - run:
+                name: Run Jest Test
+                command: yarn test --runInBand --ci --coverage --reporters=default --reporters=jest-junit && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
             - store_test_results:
                   path: coverage
@@ -42,7 +44,7 @@ jobs:
         steps:
             - checkout
             - *restore_cache
-            - run: yarn install --frozen-lockfile
+            - run: yarn bootstrap
             - run: yarn deploy:docs --token=$FIREBASE_TOKEN
 
 workflows:
