@@ -1,0 +1,58 @@
+version: 2.1
+
+references:
+  environment: &environment
+    working_directory: ~/repo
+    docker:
+        - image: cimg/node:12.19.0-browsers
+
+  restore_cache: &restore_cache
+    restore_cache:
+      keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+  
+  save_cache: &save_cache
+    save_cache:
+      paths:
+        - ~/.cache
+      key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+jobs:
+    build_and_test:
+        <<: *environment
+
+        steps:
+            - checkout
+            - *restore_cache
+            - run: yarn install --frozen-lockfile
+            - *save_cache
+            - run: yarn lint
+            - run: yarn test --runInBand --ci --coverage --reporters=default --reporters=jest-junit
+
+            - store_test_results:
+                  path: coverage
+
+            - store_artifacts:
+                  path: coverage
+
+    deploy_docs_firebase:
+        <<: *environment
+
+        steps:
+            - checkout
+            - *restore_cache
+            - run: yarn install --frozen-lockfile
+            - run: yarn deploy:docs --token=$FIREBASE_TOKEN
+
+workflows:
+    version: 2
+    workflow:
+        jobs:
+            - build_and_test
+            - deploy_docs_firebase:
+                requires:
+                    - build_and_test
+                filters:
+                    branches:
+                        only: master
