@@ -6,6 +6,7 @@
     "build": "lerna run build",
     "lint": "eslint ./packages --ext .js,.ts",
     "test": "JEST_JUNIT_OUTPUT_DIR=coverage jest",
+    "publish-packages": "yarn build && npx lerna publish",
     "generate:docs": "typedoc --out docs",
     "open:docs": "open ./docs/index.html",
     "deploy:docs": "yarn generate:docs && firebase deploy --only hosting:rainbow-cloud-functions"

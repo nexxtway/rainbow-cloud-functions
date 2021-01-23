@@ -6,7 +6,7 @@
 ## Development
 
 1. `yarn bootstrap`
-    1. Since we are using yarn workspaces this command will install the dependencies of the root folder and go into all package’s root folders and execute yarn install. It doesn’t make much sense to invoke lerna bootstrap since it just calls yarn install itself.
+    1. Since we are using yarn workspaces this command will install the dependencies of the root folder and go into all package’s root folders and execute yarn install.
 
 _If you want to run command in a specific package:_
 
