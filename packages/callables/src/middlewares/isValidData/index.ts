@@ -19,6 +19,28 @@ const handleError = (errors) => {
     throw new https.HttpsError('invalid-argument', message);
 };
 
+/**
+ * ## isValidData is a middleware generator. It allows you to validate the data object param of a callable function using JSON Schema Validator(Ajv).
+ *
+ * ## Usage
+ *
+ * ```typescript
+ * import { isValidData } from '@rainbow-cloud-functions/callables';
+ *
+ * const callableFunctionFoo = (data, context) => {
+ *      // callable function code here.
+ * };
+ * const schema = {
+ *      type: 'object',
+ *      properties: {
+ *          name: { type: 'string' },
+ *      },
+ *      required: ['name'],
+ * };
+ * exports.callableFunctionFoo = isValidData({ schema })(callableFunctionFoo);
+ * ```
+ *
+ */
 const isValidData = (params: AjvMiddlewareParams): CallableMiddleware => {
     const { schema, keywords, ...rest } = params;
     const ajv = new Ajv(rest);
