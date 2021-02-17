@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/nexxtway/rainbow-cloud-functions/compare/v0.2.0...v0.2.1) (2021-02-17)
+
+
+### Bug Fixes
+
+* isValidData middleware api ([72fb024](https://github.com/nexxtway/rainbow-cloud-functions/commit/72fb0242af11bd041a390cfae64115466ee5b2f4))
+
+
+
+
+
 # [0.2.0](https://github.com/nexxtway/rainbow-cloud-functions/compare/v0.1.0...v0.2.0) (2021-02-16)
 
 
