@@ -51,7 +51,7 @@ describe('isValidData()', () => {
             },
             required: ['name'],
         };
-        const isEven = { name: 'isEven', keyword: 'isEven', validate: (_schema, data) => data % 2 === 0 };
+        const isEven = { keyword: 'isEven', validate: (_schema, data) => data % 2 === 0 };
         const func = (data, context) => {
             return [data, context];
         };

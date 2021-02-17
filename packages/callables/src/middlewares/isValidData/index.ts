@@ -1,10 +1,6 @@
-import Ajv, { Options, FuncKeywordDefinition, AnySchema } from 'ajv';
+import Ajv, { Options, AnySchema, KeywordDefinition } from 'ajv';
 import { CallableMiddleware, CallableFunction } from 'callables/src/types';
 import { EventContext, logger, https } from 'firebase-functions';
-
-export interface KeywordDefinition extends FuncKeywordDefinition {
-    name: string;
-}
 
 export interface AjvMiddlewareParams extends Options {
     schema: AnySchema;
@@ -20,7 +16,9 @@ const handleError = (errors) => {
 };
 
 /**
- * ## isValidData is a middleware generator. It allows you to validate the data object param of a callable function using JSON Schema Validator(Ajv).
+ * ## Description
+ *
+ * isValidData is a middleware generator. It allows you to validate the data object param of a callable function using JSON Schema Validator(Ajv).
  *
  * ## Usage
  *
@@ -39,15 +37,40 @@ const handleError = (errors) => {
  * };
  * exports.callableFunctionFoo = isValidData({ schema })(callableFunctionFoo);
  * ```
+ * ## Usage with custom keywords
+ *
+ * ```typescript
+ * import { isValidData } from '@rainbow-cloud-functions/callables';
+ *
+ * const callableFunctionFoo = (data, context) => {
+ *      // callable function code here.
+ * };
+ *
+ * const keywords = [
+ *      {
+ *          keyword: "isUppercase",
+ *          validate: (schema, data) => data.toUpperCase() === data,
+ *      }
+ * ]
+ *
+ * const schema = {
+ *      type: 'object',
+ *      properties: {
+ *          name: {
+ *              type: 'string',
+ *              isUppercase: true,
+ *          },
+ *      },
+ *      required: ['name'],
+ * };
  *
  */
 const isValidData = (params: AjvMiddlewareParams): CallableMiddleware => {
     const { schema, keywords, ...rest } = params;
     const ajv = new Ajv(rest);
 
-    keywords?.forEach((keyword) => {
-        const { name, ...restKeyword } = keyword;
-        ajv.addKeyword(name, restKeyword);
+    keywords?.forEach((keywordDef) => {
+        ajv.addKeyword(keywordDef);
     });
     const validate = ajv.compile(schema);
     return (next: CallableFunction): CallableFunction => {
