@@ -1,6 +1,6 @@
 {
     "name": "@rainbow-cloud-functions/automation",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "main": "dist/index",
     "types": "dist/index",
     "author": "Nexxtway Team",
@@ -13,7 +13,6 @@
         "clean": "rm -rf ./dist",
         "compile": "tsc -p tsconfig.json"
     },
-    "dependencies": {},
     "devDependencies": {
         "firebase-admin": "^9.4.2",
         "lerna": "^3.22.1",
