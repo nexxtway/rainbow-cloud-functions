@@ -33,20 +33,20 @@ const triggerCloudBuild = (admin: AdminApp) => async (params: TriggerCloudBuildP
     const body = JSON.stringify({
         substitutions,
     });
-    try {
-        return fetch(URL, {
-            method: 'POST',
-            body,
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
-    } catch (error) {
-        console.error('triggerCloudBuild:', error.toString());
+    const response = await fetch(URL, {
+        method: 'POST',
+        body,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
+    const result = await response.json();
+    if (result.error) {
+        throw new Error(result.error);
     }
-    return null;
+    return result;
 };
 
 export default triggerCloudBuild;
