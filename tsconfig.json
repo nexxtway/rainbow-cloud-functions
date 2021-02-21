@@ -4,6 +4,7 @@
         "baseUrl": "./packages",
         "paths": {
             "@rainbow-cloud-functions/callables": ["callables/src"],
+            "@rainbow-cloud-functions/automation":["automation/src"]
         }
     }
 }
