@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import { AdminApp } from '../types';
 
 export interface TriggerCloudBuildParams {
