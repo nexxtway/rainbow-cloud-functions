@@ -2,10 +2,12 @@
     "compilerOptions": {
       "module": "commonjs",
       "target": "es2018",
-      "sourceMap": true
+      "sourceMap": true,
+      "esModuleInterop": true
     },
     "exclude": [
       "node_modules",
-      "dist"
+      "dist",
+      "packages/**/*.spec.ts"
     ]
 }
