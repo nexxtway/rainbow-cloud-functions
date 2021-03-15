@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/nexxtway/rainbow-cloud-functions/compare/v0.3.2...v0.4.0) (2021-03-15)
+
+
+### Features
+
+* add roles/permissions middlewares ([df5524d](https://github.com/nexxtway/rainbow-cloud-functions/commit/df5524def0fc8c420fd3d8ba243a84a3b77a3c34))
+* express package + isAuth middleware ([a626eed](https://github.com/nexxtway/rainbow-cloud-functions/commit/a626eedd7eff0575166f7ab3d723ec7230f9df5b))
+
+
+
+
+
 ## [0.3.2](https://github.com/nexxtway/rainbow-cloud-functions/compare/v0.3.1...v0.3.2) (2021-02-21)
 
 
