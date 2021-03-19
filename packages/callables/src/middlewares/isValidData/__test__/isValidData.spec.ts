@@ -76,4 +76,35 @@ describe('isValidData()', () => {
         }
         expect.assertions(1);
     });
+    it('should set defaults from schema when value is not passed', async () => {
+        expect.assertions(1);
+        const schema: AnySchema = {
+            type: 'object',
+            properties: {
+                name: { type: 'string' },
+                title: { type: 'string', default: 'King Beyond The Wall' },
+            },
+            required: ['name'],
+        };
+        const func = jest.fn();
+        const data = { name: 'John Snow' };
+        const context: EventContext = {
+            eventId: 'id123',
+            timestamp: String(Date.now()),
+            eventType: 't123',
+            resource: {
+                service: 's123',
+                name: 'n123',
+            },
+            params: {},
+        };
+        await isValidData({ schema })(func)(data, context);
+        expect(func).toHaveBeenCalledWith(
+            {
+                name: 'John Snow',
+                title: 'King Beyond The Wall',
+            },
+            context,
+        );
+    });
 });

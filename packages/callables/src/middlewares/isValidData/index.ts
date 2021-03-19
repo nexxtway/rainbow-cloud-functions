@@ -67,7 +67,10 @@ const handleError = (errors) => {
  */
 const isValidData = (params: AjvMiddlewareParams): CallableMiddleware => {
     const { schema, keywords, ...rest } = params;
-    const ajv = new Ajv(rest);
+    const ajv = new Ajv({
+        useDefaults: true,
+        ...rest,
+    });
 
     keywords?.forEach((keywordDef) => {
         ajv.addKeyword(keywordDef);
