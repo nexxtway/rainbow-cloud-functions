@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "ajv": "^7.1.0",
+        "ajv-formats": "^2.0.2",
         "lodash": "^4.17.21"
     },
     "devDependencies": {

@@ -13,7 +13,6 @@ const admin = {
 // @ts-ignore
 app.use(isAuth({ admin }));
 app.get('/', (_req, res) => res.json({ ok: true }));
-console.log(request);
 
 describe('isAuth', () => {
     it('it should verify the IdToken and attach user with the decodeIdToken', async () => {

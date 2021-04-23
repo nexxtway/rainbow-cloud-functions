@@ -107,4 +107,39 @@ describe('isValidData()', () => {
             context,
         );
     });
+    it('should validate data using formats', async () => {
+        const schema: AnySchema = {
+            type: 'object',
+            properties: {
+                email: {
+                    type: 'string',
+                    nullable: true,
+                    format: 'email',
+                },
+            },
+            required: ['email'],
+        };
+        const func = (data, context) => {
+            return [data, context];
+        };
+        const data = { email: 'email' };
+        const context: EventContext = {
+            eventId: 'id123',
+            timestamp: String(Date.now()),
+            eventType: 't123',
+            resource: {
+                service: 's123',
+                name: 'n123',
+            },
+            params: {},
+        };
+        try {
+            await isValidData({
+                schema,
+            })(func)(data, context);
+        } catch (err) {
+            expect(err.message).toBe(`should match format "email"`);
+        }
+        expect.assertions(1);
+    });
 });
