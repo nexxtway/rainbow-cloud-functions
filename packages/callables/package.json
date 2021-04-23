@@ -1,6 +1,6 @@
 {
     "name": "@rainbow-cloud-functions/callables",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "main": "dist/index",
     "types": "dist/index",
     "author": "Nexxtway Team",

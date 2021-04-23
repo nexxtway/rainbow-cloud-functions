@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/nexxtway/rainbow-cloud-functions/compare/v0.4.0...v0.5.0) (2021-04-23)
+
+
+### Bug Fixes
+
+* set useDefaults to true on isValidData config ([31ec9ec](https://github.com/nexxtway/rainbow-cloud-functions/commit/31ec9ec56cf71686a890fc94a3d82586e024c089))
+
+
+### Features
+
+* added formats to isValidData middleware ([acb9cf2](https://github.com/nexxtway/rainbow-cloud-functions/commit/acb9cf212e854899142c1847abb73f43bf107a69))
+
+
+
+
+
 # [0.4.0](https://github.com/nexxtway/rainbow-cloud-functions/compare/v0.3.2...v0.4.0) (2021-03-15)
 
 
