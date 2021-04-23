@@ -1,4 +1,5 @@
 import Ajv, { Options, AnySchema, KeywordDefinition } from 'ajv';
+import addFormats from 'ajv-formats';
 import { CallableMiddleware, CallableFunction } from 'callables/src/types';
 import { EventContext, logger, https } from 'firebase-functions';
 
@@ -71,6 +72,8 @@ const isValidData = (params: AjvMiddlewareParams): CallableMiddleware => {
         useDefaults: true,
         ...rest,
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    addFormats(ajv as any);
 
     keywords?.forEach((keywordDef) => {
         ajv.addKeyword(keywordDef);
